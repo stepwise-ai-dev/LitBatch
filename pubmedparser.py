@@ -41,7 +41,7 @@ def fetch_records_from_pubmed(query, max, email):
 
 def sanitize_filename(query):
     """
-    Sanitize a filename by replacing or removing invalid characters.
+    Generate a sanitized filename based on the prompt by replacing or removing invalid characters and truncating to 20 characters.
     """
     # Create a simple filename with a timestamp and the first few characters of the query
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -150,6 +150,7 @@ def pubmedbatchquery(o='./', q=None, e="your_email@example.com", m=5):
     try:
         final_df.to_excel(master_output_file, index=False)
         print(f'Master spreadsheet saved as {master_output_file}')
+        return master_output_file
     except Exception as e:
         print(f'Failed to save master spreadsheet {master_output_file}. Error: {e}')
 
